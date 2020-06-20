@@ -1,6 +1,5 @@
 *.sln
 *.aps
-*.rc
 /x64
 /Debug
 /.vs
