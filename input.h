@@ -11,9 +11,8 @@ namespace CNGE {
 		static constexpr i32 NUM_KEYS = 0xff;
 		
 		static constexpr i32 BUTTON_RELEASED = 0;
-		static constexpr i32 BUTTON_INITIAL = 1;
-		static constexpr i32 BUTTON_PRESSED = 2;
-		static constexpr i32 BUTTON_HELD = 3;
+		static constexpr i32 BUTTON_PRESSED = 1;
+		static constexpr i32 BUTTON_HELD = 2;
 
 		static constexpr i32 BUTTON_LEFT = 0;
 		static constexpr i32 BUTTON_MIDDLE = 1;
@@ -28,12 +27,12 @@ namespace CNGE {
 		i32 width, height;
 		bool resized;
 		
-		auto update() -> void;
-		
 		friend class Window;
 
 	public:
 		Input();
+
+		auto update() -> void;
 
 		[[nodiscard]] auto getButtonPressed(i32) const -> bool;
 		[[nodiscard]] auto getButtonDown(i32) const -> bool;

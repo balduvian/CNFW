@@ -28,7 +28,7 @@ namespace CNGE {
 			auto const lastState = (lParam >> 30) & 1;
 
 			if (lastState == 0 && wParam < Input::NUM_KEYS)
-				input.keys[wParam] = Input::BUTTON_INITIAL;
+				input.keys[wParam] = Input::BUTTON_PRESSED;
 		} return 0;
 
 		case WM_KEYUP: {
@@ -37,15 +37,15 @@ namespace CNGE {
 		} return 0;
 			
 		case WM_LBUTTONDOWN: {
-			input.keys[Input::BUTTON_LEFT] = Input::BUTTON_INITIAL;
+			input.keys[Input::BUTTON_LEFT] = Input::BUTTON_PRESSED;
 		} return 0;
 
 		case WM_MBUTTONDOWN: {
-			input.keys[Input::BUTTON_MIDDLE] = Input::BUTTON_INITIAL;
+			input.keys[Input::BUTTON_MIDDLE] = Input::BUTTON_PRESSED;
 		} return 0;
 			
 		case WM_RBUTTONDOWN: {
-			input.keys[Input::BUTTON_RIGHT] = Input::BUTTON_INITIAL;
+			input.keys[Input::BUTTON_RIGHT] = Input::BUTTON_PRESSED;
 		} return 0;
 
 		case WM_LBUTTONUP: {
@@ -105,9 +105,9 @@ namespace CNGE {
 			);
 		} return 0;
 
-		case WM_CLOSE:
-			PostQuitMessage(0);
-			return 0;
+		case WM_CLOSE: {
+			shouldClose = true;
+		} return 0;
 
 		default:
 			return DefWindowProc(window, message, wParam, lParam);
@@ -254,12 +254,29 @@ namespace CNGE {
 		SendMessageA(window, WM_SETICON, 1, LPARAM(icon));
 	}
 
+	auto Window::poll() -> void {
+		auto message = MSG{};
+
+		while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
+			TranslateMessage(&message);
+			DispatchMessage(&message);
+		}
+	}
+
+	auto Window::swap() -> void {
+		SwapBuffers(deviceContext);
+	}
+
 	auto Window::getShouldClose() -> bool {
 		return shouldClose;
 	}
 
-	auto Window::getInput() -> Input const * {
+	auto Window::getInput() -> Input* {
 		return &input;
+	}
+
+	auto Window::getWindow() -> HWND {
+		return window;
 	}
 
 	auto Window::close() -> void {

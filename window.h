@@ -24,6 +24,8 @@ namespace CNGE {
 
 		static auto createOpenGLWindow(const wchar_t*, i32, i32, i32, i32, i32, BYTE, DWORD) -> void;
 		
+		friend class Loop;
+
 	public:
 		Window(const wchar_t*, i32, i32, i32);
 
@@ -33,8 +35,12 @@ namespace CNGE {
 
 		static auto setIcon(i32) -> void;
 
+		static auto poll() -> void;
+		static auto swap() -> void;
+
 		[[nodiscard]] static auto getShouldClose() -> bool;
-		[[nodiscard]] static auto getInput() -> Input const *;
+		[[nodiscard]] static auto getInput() -> Input*;
+		[[nodiscard]] static auto getWindow() -> HWND;
 
 		static auto close() -> void;
 	};

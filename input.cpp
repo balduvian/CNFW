@@ -7,16 +7,24 @@ namespace CNGE {
 		buttons(), keys(),
 		width(), height(), resized() {}
 
+	/**
+	* IMPORTANT!
+	*
+	* call update on the input BEFORE you poll the window
+	* or AFTER you update the game
+	*
+	* polling the window directly sets state to be used by
+	* the game. Calling update in between the polling and the game
+	* will cause some states to be missed.
+	*/
 	auto Input::update() -> void {
 		resized = false;
 
 		for (auto& key : keys)
-			if (key == BUTTON_INITIAL || key == BUTTON_PRESSED)
-				++key;
+			if (key == BUTTON_PRESSED) key = BUTTON_HELD;
 
 		for (auto& button : buttons)
-			if (button == BUTTON_INITIAL || button == BUTTON_PRESSED)
-				++button;
+			if (button == BUTTON_PRESSED) button = BUTTON_HELD;
 	}
 	
 	auto Input::getButtonPressed(const i32 button) const -> bool {
