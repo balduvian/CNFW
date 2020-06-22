@@ -52,7 +52,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-BRUH                    ICON                    "bruh.ico"
+MAIN_ICON                    ICON                    "mainIcon.ico"
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

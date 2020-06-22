@@ -1,7 +1,7 @@
 
 #include "input.h"
 
-namespace CNGE {
+namespace CNFW {
 	Input::Input() : mouseX(),
 		mouseY(), scroll(),
 		buttons(), keys(),

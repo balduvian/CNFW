@@ -6,7 +6,7 @@
 
 #include "loop.h"
 
-namespace CNGE {
+namespace CNFW {
 	Loop::Loop(bool sanic, u32 fps) : 
 		sanic(sanic), fps(fps), frameHistory(fps), frameTime(Timing::BILLION / fps), last(), next(), frameIter(frameHistory.begin()) {}
 

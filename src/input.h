@@ -4,7 +4,7 @@
 
 #include "types.h"
 
-namespace CNGE {
+namespace CNFW {
 	class Input {
 	private:
 		static constexpr i32 NUM_BUTTONS = 3;

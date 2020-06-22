@@ -1,15 +1,16 @@
 
 #include <Windows.h>
 
+#include "src/window.h"
+#include "src/types.h"
+#include "src/loop.h"
+
 #include "resource.h"
-#include "window.h"
-#include "types.h"
-#include "loop.h"
 
 auto WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, int show) -> i32 APIENTRY {
-	auto window = CNGE::Window(L"CNFE Test", 10, 10, BRUH);
+	auto window = CNFW::Window(L"CNFW Test", 256, 256, MAIN_ICON);
 
-	auto loop = CNGE::Loop(60);
+	auto loop = CNFW::Loop(60);
 
 	loop.begin([&window]() { return window.getShouldClose(); }, [&window](auto timing) {
 		static auto input = window.getInput();

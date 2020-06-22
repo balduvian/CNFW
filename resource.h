@@ -1,9 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by Win32OpenglTest.rc
+// Used by CNFW.rc
 //
-#define IDI_ICON                        133
-#define BRUH                            143
+#define MAIN_ICON                            473
 
 // Next default values for new objects
 // 

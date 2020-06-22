@@ -2,7 +2,7 @@
 #include "window.h"
 #include <exception>
 
-namespace CNGE {
+namespace CNFW {
 
 	auto Window::windowProc(HWND const window, UINT const message, WPARAM const wParam, LPARAM const lParam) -> LONG WINAPI {
 		static auto paintStruct = PAINTSTRUCT{};
@@ -240,8 +240,11 @@ namespace CNGE {
 	Window::Window(const wchar_t* title, i32 width, i32 height, i32 iconID) {
 		SetProcessDPIAware();
 
+		auto workRect = RECT{};
+		SystemParametersInfo(SPI_GETWORKAREA, 0, &workRect, 0);
+
 		/* get window and instance and context */
-		createOpenGLWindow(title, 0, 0, 256, 256, iconID, PFD_TYPE_RGBA, PFD_DOUBLEBUFFER);
+		createOpenGLWindow(title, workRect.right / 2 - width / 2, workRect.bottom / 2 - height / 2, width, height, iconID, PFD_TYPE_RGBA, PFD_DOUBLEBUFFER);
 
 		glContext = wglCreateContext(deviceContext);
 		wglMakeCurrent(deviceContext, glContext);

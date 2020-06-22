@@ -4,7 +4,7 @@
 
 #include "types.h"
 
-namespace CNGE {
+namespace CNFW {
 	class Timing {
 	public:
 		constexpr static u64 BILLION = 1000000000;

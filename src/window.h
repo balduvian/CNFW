@@ -8,7 +8,7 @@
 #include "input.h"
 #include "types.h"
 
-namespace CNGE {
+namespace CNFW {
 	class Window {
 	private:
 		static HWND window;

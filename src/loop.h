@@ -10,7 +10,7 @@
 #include "timing.h"
 #include "window.h"
 
-namespace CNGE {
+namespace CNFW {
 	class Loop {
 	private:
 		using nanos = std::chrono::nanoseconds;
